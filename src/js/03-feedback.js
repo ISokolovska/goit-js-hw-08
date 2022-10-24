@@ -13,59 +13,22 @@ function textInput() {
   localStorage.setItem(DATA_KEY, JSON.stringify(valueForm));
 }
 
-function onFormSubmit() {
+function onFormSubmit(e) {
   e.preventDefault();
-
   const valueForm = {
     email: feedbackForm.elements.email.value,
     message: feedbackForm.elements.message.value,
   };
-
   console.log(valueForm);
-  document.feedbackForm.reset();
   localStorage.removeItem(DATA_KEY);
+  feedbackForm.reset();
 }
 
-//  if (
-//    feedbackForm.elements.email.value === '' &&
-//    feedbackForm.elements.message.value === ''
-//  ) {
-//    alert('Заповніть поля: email та message');
-//    return;
-//  }
-
-// function createObjData(value = '') {
-//   return {
-//     id: Date.now(),
-//     value,
-//     checked: false,
-//   };
-// }
-// const getData = data => {
-//   try {
-//     localStorage.setItem(DATA_KEY, JSON.stringify(data));
-//   } catch (error) {
-//     console.log('Error!');
-//   }
-// };
-
-// const addData = data => {
-//   try {
-//     let result = [];
-//     const dataJSON = getData();
-//     if (dataJSON) {
-//       result = JSON.parse(dataJSON);
-//     }
-//     result.push(data);
-//     localStorage.setItem(DATA_KEY, JSON.stringify(result));
-//   } catch (error) {
-//     console.log('Error!');
-//   }
-// };
-
-//   const keys = [];
-//   for (let i = 0; i < localStorage.length; i++) {
-//     keys.push(localStorage.getItem(localStorage.key(i)));
-//   }
-
-//
+function updateOutput() {
+  if (localStorage.getItem(DATA_KEY)) {
+    const valueForm = JSON.parse(localStorage.getItem(DATA_KEY));
+    feedbackForm.elements.email.value = valueForm.email;
+    feedbackForm.elements.message.value = valueForm.message;
+  }
+}
+updateOutput();
