@@ -5,7 +5,7 @@ const DATA_KEY = 'feedback-form-state';
 feedbackForm.addEventListener('submit', onFormSubmit);
 feedbackForm.addEventListener('input', throttle(textInput, 500));
 
-const valueForm = {
+let valueForm = {
   email: '',
   message: '',
 };
@@ -26,7 +26,7 @@ function onFormSubmit(e) {
 
 function updateOutput() {
   if (localStorage.getItem(DATA_KEY)) {
-    const valueForm = JSON.parse(localStorage.getItem(DATA_KEY));
+    valueForm = JSON.parse(localStorage.getItem(DATA_KEY));
     for (let key in valueForm) {
       feedbackForm.elements[key].value = valueForm[key];
     }
