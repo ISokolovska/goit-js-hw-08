@@ -17,6 +17,8 @@ function textInput(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
+  valueForm.email = e.currentTarget.email.value;
+  valueForm.message = e.currentTarget.message.value;
   console.log(valueForm);
   localStorage.removeItem(DATA_KEY);
   e.currentTarget.reset();
