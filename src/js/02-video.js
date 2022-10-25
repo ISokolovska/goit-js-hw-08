@@ -12,4 +12,8 @@ function setVideoTime(data) {
   );
 }
 
-player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
+player
+  .setCurrentTime(localStorage.getItem('videoplayer-current-time'))
+  .catch(function (error) {
+    console.log(error);
+  });

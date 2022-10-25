@@ -1,8 +1,6 @@
 const throttle = require('lodash.throttle');
 const feedbackForm = document.querySelector('.feedback-form');
 const DATA_KEY = 'feedback-form-state';
-const emailForm = document.querySelector('[name="email"]');
-const messageForm = document.querySelector('[name="message"]');
 
 feedbackForm.addEventListener('submit', onFormSubmit);
 feedbackForm.addEventListener('input', throttle(textInput, 500));
@@ -27,8 +25,9 @@ function onFormSubmit(e) {
 function updateOutput() {
   if (localStorage.getItem(DATA_KEY)) {
     const valueForm = JSON.parse(localStorage.getItem(DATA_KEY));
-    emailForm.value = valueForm.email;
-    messageForm.value = valueForm.message;
+    for (let key in valueForm) {
+      feedbackForm.elements[key].value = valueForm[key];
+    }
   }
 }
 updateOutput();
